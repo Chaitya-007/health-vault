@@ -7,8 +7,8 @@ import { Navbar } from "@/components/navbar/navbar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Gemini ai",
-  description: "Created by prathamesh chougale",
+  title: "Health Vault",
+  description: "Health Vault is a personal health record app.",
 };
 
 export default function RootLayout({
