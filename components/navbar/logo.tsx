@@ -1,6 +1,7 @@
 import Image from "next/image";
-import logo from "@/public/next.svg";
+import logo from "@/public/anantya.svg";
 
-export const Logo = () => {
+const Logo = () => {
   return <Image height={40} width={40} alt="logo" src={logo} />;
 };
+export default Logo;
