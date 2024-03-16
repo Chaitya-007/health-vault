@@ -6,7 +6,7 @@ export const Sidebar = () => {
     <div className="h-full border-r flex flex-col overflow-y-auto shadow-sm">
       <div className="flex flex-row p-6">
         <Logo />
-        <span className="mt-1 font-bold text-blue-500"> EduPulse </span>
+        <span className="mt-1 font-bold text-blue-500"> Health Vault </span>
       </div>
       <div className="flex flex-col w-full">
         <SidebarRoutes />
