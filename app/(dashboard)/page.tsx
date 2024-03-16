@@ -1,3 +1,4 @@
+import GlobeDemo from "@/components/3D/globe";
 import React from "react";
 
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
           doctors.
         </p>
       </div>
+      <GlobeDemo />
     </main>
   );
 };
