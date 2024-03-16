@@ -32,7 +32,7 @@ export const NavbarRoutes = () => {
           {userId ? (
             <UserButton />
           ) : (
-            <div className="bg-blue-600 p-3 rounded-xl">
+            <div className="bg-blue-600 p-3 rounded-xl text-white">
               <SignInButton />
             </div>
           )}
