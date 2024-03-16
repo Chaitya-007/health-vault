@@ -21,8 +21,8 @@ const UserPage = () => {
           <p className=" font-serif p-4 w-[80vw] text-wrap">
             Thanks for using our service. We are here to help you. You can view
             your appointment here.We are always tying to provide the best
-            service to you. You can view your appointment here and Reach Patient
-            Appointment at home
+            service to you. You can view your appointment here and we Reach
+            Patient Appointment at home
           </p>
           <div className="flex w-[80vw] justify-center">
             <Button className="bg-blue-600">
