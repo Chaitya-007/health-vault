@@ -1,4 +1,4 @@
-import { Logo } from "./logo";
+import Logo from "@/public/anantya.svg";
 import { SidebarRoutes } from "./sidebar-routes";
 
 export const Sidebar = () => {
