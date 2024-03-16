@@ -27,7 +27,7 @@ export const NavbarRoutes = () => {
           <div className="mx-4">
             <ModeToggle />
           </div>
-          <UserButton />
+          <UserButton afterSignOutUrl="/" />
         </div>
       </div>
     </>

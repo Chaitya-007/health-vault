@@ -30,7 +30,7 @@ export const NavbarRoutes = () => {
             <ModeToggle />
           </div>
           {userId ? (
-            <UserButton />
+            <UserButton afterSignOutUrl="/" />
           ) : (
             <div className="bg-blue-600 p-3 rounded-xl text-white">
               <SignInButton />
