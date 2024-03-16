@@ -1,6 +1,13 @@
 "use client";
 
-import { Calendar, Compass, Presentation, Layout, MehIcon } from "lucide-react";
+import {
+  Calendar,
+  Compass,
+  Presentation,
+  Layout,
+  MehIcon,
+  TvIcon,
+} from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
 const guestRoutes = [
@@ -8,6 +15,11 @@ const guestRoutes = [
     icon: Layout,
     label: "Home",
     href: "/",
+  },
+  {
+    icon: TvIcon,
+    label: "Profile",
+    href: "/user",
   },
   {
     icon: Layout,
