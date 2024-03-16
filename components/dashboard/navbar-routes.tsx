@@ -12,8 +12,6 @@ const Links = [
 ];
 
 export const NavbarRoutes = () => {
-  const { userId } = useAuth();
-
   return (
     <>
       <div className="flex justify-between items-center w-screen">
@@ -29,13 +27,7 @@ export const NavbarRoutes = () => {
           <div className="mx-4">
             <ModeToggle />
           </div>
-          {userId ? (
-            <UserButton />
-          ) : (
-            <div className="bg-blue-600 p-3 rounded-xl text-white">
-              <SignInButton />
-            </div>
-          )}
+          <UserButton />
         </div>
       </div>
     </>
