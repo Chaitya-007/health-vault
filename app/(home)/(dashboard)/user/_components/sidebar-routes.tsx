@@ -29,6 +29,11 @@ const guestRoutes = [
     label: "Available Doctors",
     href: "/user/available-doctors",
   },
+  {
+    icon: MehIcon,
+    label: "Appointments",
+    href: "/user/appointments",
+  },
 ];
 export const SidebarRoutes = () => {
   const routes = guestRoutes;
