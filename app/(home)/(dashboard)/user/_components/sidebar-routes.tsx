@@ -6,6 +6,11 @@ import { SidebarItem } from "./sidebar-item";
 const guestRoutes = [
   {
     icon: Layout,
+    label: "Home",
+    href: "/",
+  },
+  {
+    icon: Layout,
     label: "Insurance",
     href: "/user/insurance",
   },
