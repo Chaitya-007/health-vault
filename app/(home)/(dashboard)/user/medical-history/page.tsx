@@ -204,6 +204,7 @@ const MedicalHistory: React.FC = () => {
         <h2 className="text-lg font-semibold mb-4">Medical Records</h2>
         {renderMedicalRecords()}
       </div>
+      <Toaster position="bottom-right" />
     </div>
   );
 };
