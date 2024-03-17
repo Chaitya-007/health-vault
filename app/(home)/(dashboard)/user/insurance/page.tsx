@@ -1,4 +1,6 @@
 "use client";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import React, { useState } from "react";
 
 interface InsurancePlan {
@@ -55,13 +57,7 @@ const InsurancePage: React.FC = () => {
   };
 
   return (
-    <div
-      className={`flex justify-center items-start mt-8 ${
-        darkMode
-          ? "bg-gray-900 text-white"
-          : "bg-white text-gray-800 dark:bg-gray-900 dark:text-white"
-      }`}
-    >
+    <div className="flex justify-center items-start mt-8">
       <div className="w-1/2">
         <div
           className={`rounded-lg shadow-lg p-4 ${
@@ -111,7 +107,7 @@ const InsurancePage: React.FC = () => {
               }}
             >
               <div className="flex items-center">
-                <input
+                <Input
                   type="text"
                   name="name"
                   placeholder="Name"
@@ -120,7 +116,7 @@ const InsurancePage: React.FC = () => {
                   }-300 p-2 mr-2`}
                   required
                 />
-                <input
+                <Input
                   type="text"
                   name="coverage"
                   placeholder="Coverage"
@@ -129,7 +125,7 @@ const InsurancePage: React.FC = () => {
                   }-300 p-2 mr-2`}
                   required
                 />
-                <input
+                <Input
                   type="number"
                   name="premium"
                   placeholder="Premium"
@@ -139,14 +135,14 @@ const InsurancePage: React.FC = () => {
                   }-300 p-2 mr-2`}
                   required
                 />
-                <button
+                <Button
                   type="submit"
                   className={`bg-blue-500 text-white py-2 px-4 rounded-lg ${
                     darkMode ? "hover:bg-blue-600" : "hover:bg-blue-400"
                   } focus:outline-none`}
                 >
                   Add
-                </button>
+                </Button>
               </div>
             </form>
           </div>

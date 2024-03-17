@@ -25,7 +25,7 @@ const UserPage = () => {
             Patient Appointment at home
           </p>
           <div className="flex w-[80vw] justify-center">
-            <Button className="bg-blue-600">
+            <Button className="bg-blue-600 text-white">
               <Link href="/waiting-appointment">View Appointment</Link>
             </Button>
           </div>
