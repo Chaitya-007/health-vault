@@ -27,11 +27,6 @@ const guestRoutes = [
     href: "/user/insurance",
   },
   {
-    icon: Compass,
-    label: "Allergies",
-    href: "/user/allergies",
-  },
-  {
     icon: Calendar,
     label: "Medical History",
     href: "/user/medical-history",
@@ -47,7 +42,7 @@ const guestRoutes = [
     href: "/user/available-doctors",
   },
   {
-    icon: MehIcon,
+    icon: Compass,
     label: "Appointments",
     href: "/user/appointments",
   },
