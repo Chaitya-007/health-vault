@@ -39,7 +39,6 @@ const InsurancePage: React.FC = () => {
       try {
         const response = await fetch(`/api/insurance/${userId}`);
         const data = await response.json();
-        console.log(data);
         setInsurancePlans(data);
       } catch (error) {
         console.error("Error fetching insurance data:", error);
