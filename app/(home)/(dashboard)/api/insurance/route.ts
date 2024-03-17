@@ -6,16 +6,20 @@ export async function POST(req: NextRequest) {
     const MongodbClient = await clientPromise;
     const db = MongodbClient.db("Anantya");
     const collection = db.collection("insurance");
+
     // const result = await collection.insertOne(data);
     try {
-        const user = await collection.findOne({ email: data.email });
-        if (user) {
-            console.log("user already exists route")
-            return NextResponse.json({ success: false, error: "User already exists", status: 409 });
-        }
         const result = await collection.insertOne(data);
         return NextResponse.json({ success: true, result, status: 200 });
     } catch (error) {
         return NextResponse.json({ success: false, error, status: 500 });
     }
+}
+
+export async function GET(req: NextRequest) {
+    const MongodbClient = await clientPromise;
+    const db = MongodbClient.db("Anantya");
+    const collection = db.collection("insurance");
+    const data = await collection.find().toArray();
+    return NextResponse.json(data);
 }

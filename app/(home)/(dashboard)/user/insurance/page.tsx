@@ -1,16 +1,52 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React, { useState } from "react";
+import { useAuth, currentUser } from "@clerk/nextjs";
 
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import React, { useEffect, useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { InsuranceSchema } from "./schema";
+import { z } from "zod";
+import { Toaster, toast } from "sonner";
 interface InsurancePlan {
-  id: number;
+  id: string;
   name: string;
-  coverage: string;
-  premium: number;
+  company: string;
+  insuranceCost: number;
 }
-
+export type InsuaranceFormSchema = z.infer<typeof InsuranceSchema>;
 const InsurancePage: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<InsuaranceFormSchema>({
+    // resolver: zodResolver(ContactFormSchema),
+  });
+
+  useEffect(() => {
+    const getInsuranceData = async () => {
+      try {
+        const response = await fetch("/api/insurance");
+        const data = await response.json();
+
+        // Process the data as needed
+        setInsurancePlans(data);
+      } catch (error) {
+        console.error("Error fetching insurance data:", error);
+      }
+    };
+    getInsuranceData();
+  }, []);
   const [insurancePlans, setInsurancePlans] = useState<InsurancePlan[]>([]);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -21,43 +57,49 @@ const InsurancePage: React.FC = () => {
     setInsurancePlans([...insurancePlans, plan]);
   };
 
-  // Sample insurance plan data
-  const sampleInsurancePlans: InsurancePlan[] = [
-    { id: 1, name: "Basic Plan", coverage: "Accidental Coverage", premium: 50 },
-    {
-      id: 2,
-      name: "Standard Plan",
-      coverage: "Accidental and Medical Coverage",
-      premium: 100,
-    },
-    {
-      id: 3,
-      name: "Premium Plan",
-      coverage: "Accidental, Medical, and Travel Coverage",
-      premium: 150,
-    },
-  ];
-
+  const { userId } = useAuth();
+  const processForm: SubmitHandler<InsuaranceFormSchema> = async (data) => {
+    const response = await fetch("/api/insurance", {
+      method: "POST",
+      body: JSON.stringify({ ...data, id: userId! }),
+    });
+    const { success } = await response.json();
+    console.log(success);
+    if (success) {
+      addInsurancePlan({ ...data, id: userId! });
+      toast("Data has been sent!");
+      reset();
+      return;
+    }
+    toast("Something went wrong!");
+    return;
+  };
   // Display insurance plans
   const renderInsurancePlans = () => {
-    return insurancePlans.map((plan) => (
-      <div
-        key={plan.id}
-        className={`flex justify-between items-center border-b border-gray-200 py-2 px-4 ${
-          darkMode
-            ? "text-white bg-gray-800"
-            : "text-gray-600 bg-white dark:bg-gray-800 dark:text-white"
-        }`}
-      >
-        <span className="font-semibold">{plan.name}</span>
-        <span>{plan.coverage}</span>
-        <span>${plan.premium}</span>
-      </div>
-    ));
+    return (
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Name</TableHead>
+            <TableHead>Company</TableHead>
+            <TableHead>Insuarance Prize</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {insurancePlans.map((plan) => (
+            <TableRow key={plan.id}>
+              <TableCell className="font-medium">{plan.name}</TableCell>
+              <TableCell>{plan.company}</TableCell>
+              <TableCell>${plan.insuranceCost}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    );
   };
 
   return (
-    <div className="flex justify-center items-start mt-8">
+    <div className="flex flex-col items-center justify-start mt-8">
       <div className="w-1/2">
         <div
           className={`rounded-lg shadow-lg p-4 ${
@@ -86,54 +128,32 @@ const InsurancePage: React.FC = () => {
             >
               Add New Insurance Plan
             </h3>
-            <form
-              onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-                e.preventDefault();
-                const target = e.target as typeof e.target & {
-                  name: { value: string };
-                  coverage: { value: string };
-                  premium: { value: string };
-                };
-                const name = target.name.value;
-                const coverage = target.coverage.value;
-                const premium = parseFloat(target.premium.value);
-                addInsurancePlan({
-                  id: insurancePlans.length + 1,
-                  name,
-                  coverage,
-                  premium,
-                });
-                e.currentTarget.reset();
-              }}
-            >
+            <form onSubmit={handleSubmit(processForm)}>
               <div className="flex items-center">
                 <Input
                   type="text"
-                  name="name"
                   placeholder="Name"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
-                  required
+                  {...register("name", { required: true })}
                 />
                 <Input
                   type="text"
-                  name="coverage"
-                  placeholder="Coverage"
+                  placeholder="company"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
-                  required
+                  {...register("company", { required: true })}
                 />
                 <Input
                   type="number"
-                  name="premium"
-                  placeholder="Premium"
+                  placeholder="insuranceCost"
                   step="0.01"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
-                  required
+                  {...register("insuranceCost", { required: true })}
                 />
                 <Button
                   type="submit"
@@ -147,9 +167,10 @@ const InsurancePage: React.FC = () => {
             </form>
           </div>
           {/* Render existing insurance plans */}
-          {renderInsurancePlans()}
         </div>
       </div>
+      <div className="mt-8 w-[80vw]">{renderInsurancePlans()}</div>
+      <Toaster position="bottom-right" />
     </div>
   );
 };
