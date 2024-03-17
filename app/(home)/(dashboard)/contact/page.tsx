@@ -6,13 +6,13 @@ import Contact from "@/components/EmailContact/PerfectContact";
 const ContactPage = () => {
   return (
     <>
-      <main className="pt-32 max-w-full">
+      <main className="pt-32 max-w-full ">
         <ContactRight />
         <section className="flex lg:flex-row mb-4 lg:mb-16 items-center flex-col">
-          <div className="lg:w-1/2 text-center h-[60vh] lg:block hidden w-full">
+          <div className="lg:w-1/2 text-center h-[60vh] lg:block hidden w-full z-40">
             <EarthCanvas />
           </div>
-          <div className="lg:w-1/2 w-11/12">
+          <div className="lg:w-1/2 w-11/12 z-40">
             <Contact />
           </div>
         </section>

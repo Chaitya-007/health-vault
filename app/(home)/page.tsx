@@ -22,7 +22,7 @@ const Home = () => {
               particleColor="#FFFFFF"
             />
           </div>
-          <main className="pt-[80px] h-full">
+          <main className="py-[80px] h-full">
             <div className="p-4 bg-white dark:bg-black rounded-lg flex items-center flex-col w-screen">
               <h2 className="text-navy text-2xl mb-4">
                 Get Started with Health Vault
