@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
 
 import { cn } from "@/lib/utils";
@@ -51,7 +51,7 @@ const MedicalHistory: React.FC = () => {
   const addMedicalRecord = (record: MedicalRecord) => {
     setMedicalRecords([...medicalRecords, record]);
   };
-  const [date, setDate] = React.useState<Date>();
+  // const [date, setDate] = React.useState<Date>();
 
   // Display medical records
   const renderMedicalRecords = () => {
@@ -87,6 +87,18 @@ const MedicalHistory: React.FC = () => {
   });
 
   const { userId } = useAuth();
+  useEffect(() => {
+    const getInsuranceData = async () => {
+      try {
+        const response = await fetch(`/api/medication/${userId}`);
+        const data = await response.json();
+        setMedicalRecords(data);
+      } catch (error) {
+        console.error("Error fetching insurance data:", error);
+      }
+    };
+    getInsuranceData();
+  }, [userId]);
   const processForm: SubmitHandler<MedicalRecordFormSchema> = async (data) => {
     console.log(data);
     const response = await fetch("/api/medication", {
