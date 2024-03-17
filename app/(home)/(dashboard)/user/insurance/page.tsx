@@ -33,20 +33,20 @@ const InsurancePage: React.FC = () => {
     // resolver: zodResolver(ContactFormSchema),
   });
 
+  const { userId } = useAuth();
   useEffect(() => {
     const getInsuranceData = async () => {
       try {
-        const response = await fetch("/api/insurance");
+        const response = await fetch(`/api/insurance/${userId}`);
         const data = await response.json();
-
-        // Process the data as needed
+        console.log(data);
         setInsurancePlans(data);
       } catch (error) {
         console.error("Error fetching insurance data:", error);
       }
     };
     getInsuranceData();
-  }, []);
+  }, [userId]);
   const [insurancePlans, setInsurancePlans] = useState<InsurancePlan[]>([]);
   const [darkMode, setDarkMode] = useState(false);
 
@@ -57,7 +57,6 @@ const InsurancePage: React.FC = () => {
     setInsurancePlans([...insurancePlans, plan]);
   };
 
-  const { userId } = useAuth();
   const processForm: SubmitHandler<InsuaranceFormSchema> = async (data) => {
     const response = await fetch("/api/insurance", {
       method: "POST",
