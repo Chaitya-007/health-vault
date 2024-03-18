@@ -52,7 +52,7 @@ const DoctorPage = () => {
           </p>
           <div className="flex mt-6 lg:w-[80vw] justify-center">
             <Button className="bg-blue-600 text-white">
-              <Link href="/waiting-appointment">View Appointment</Link>
+              <Link href="/appointment">View Appointment</Link>
             </Button>
           </div>
         </div>
