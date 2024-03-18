@@ -5,7 +5,9 @@ import { SparklesCore } from "@/components/ui/sparkles";
 const ContactLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
-      <Navbar />
+      <div className="fixed w-full z-50">
+        <Navbar />
+      </div>
       <div className="relative">
         <div className="w-full absolute top-0 inset-0 h-screen z-10">
           <SparklesCore
