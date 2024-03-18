@@ -4,6 +4,29 @@ import healthimage from "@/public/health.jpg";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+const doctorAppointments = [
+  {
+    appointmentCount: 0,
+    appointmentType: "New Appointment",
+    appointmentLink: "/doctor/appointments",
+  },
+  {
+    appointmentCount: 0,
+    appointmentType: "Approved Appointment",
+    appointmentLink: "/doctor/appointments",
+  },
+  {
+    appointmentCount: 0,
+    appointmentType: "Cancelled Appointment",
+    appointmentLink: "/doctor/appointments",
+  },
+  {
+    appointmentCount: 0,
+    appointmentType: "Total Appointment",
+    appointmentLink: "/doctor/appointments",
+  },
+];
+
 const DoctorPage = () => {
   return (
     <main>
@@ -35,34 +58,24 @@ const DoctorPage = () => {
         </div>
         <h2 className="text-3xl m-4">Status</h2>
         <div className="flex flex-wrap justify-between">
-          <div className="w-[40vw] border border-cyan-600 rounded-xl m-4">
-            <h2 className="p-3 text-xl font-bold">0</h2>
-            <p className="p-3 text-xl font-bold">New Appointment</p>
-            <div className="bg-yellow-300 text-black pl-4 mt-4 text-xl font-bold rounded-b-xl">
-              <Link href="/appointments">View Details</Link>
+          {doctorAppointments.map((appointments, index) => (
+            <div
+              key={index}
+              className="w-[40vw] border border-cyan-600 rounded-xl m-4"
+            >
+              <h2 className="p-3 text-xl font-bold">
+                {appointments.appointmentCount}
+              </h2>
+              <p className="p-3 text-xl font-bold">
+                {appointments.appointmentType}
+              </p>
+              <Link href={appointments.appointmentLink}>
+                <div className="bg-yellow-300 text-black pl-4 mt-4 text-xl font-bold rounded-b-xl">
+                  View Details
+                </div>
+              </Link>
             </div>
-          </div>
-          <div className="w-[40vw] border border-cyan-600 rounded-xl m-4">
-            <h2 className="p-3 text-xl font-bold">0</h2>
-            <p className="p-3 text-xl font-bold">Approved Appointment</p>
-            <div className="bg-yellow-300 text-black pl-4 mt-4 text-xl font-bold rounded-b-xl">
-              <Link href="/appointments">View Details</Link>
-            </div>
-          </div>
-          <div className="w-[40vw] border border-cyan-600 rounded-xl m-4">
-            <h2 className="p-3 text-xl font-bold">0</h2>
-            <p className="p-3 text-xl font-bold">Cancelled Appointment</p>
-            <div className="bg-yellow-300 text-black pl-4 mt-4 text-xl font-bold rounded-b-xl">
-              <Link href="/appointments">View Details</Link>
-            </div>
-          </div>
-          <div className="w-[40vw] border border-cyan-600 rounded-xl m-4">
-            <h2 className="p-3 text-xl font-bold">0</h2>
-            <p className="p-3 text-xl font-bold">Total Appointment</p>
-            <div className="bg-yellow-300 text-black pl-4 mt-4 text-xl font-bold rounded-b-xl">
-              <Link href="/appointments">View Details</Link>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </main>
