@@ -17,7 +17,7 @@ const guestRoutes = [
   {
     icon: Smile,
     label: "Waiting Appointment",
-    href: "/doctor/waiting-appointment",
+    href: "/doctor/appointments",
   },
 ];
 export const SidebarRoutes = () => {

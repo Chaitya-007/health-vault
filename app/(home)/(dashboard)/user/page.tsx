@@ -35,11 +35,11 @@ const UserPage = () => {
         <Image
           src={healthimage}
           alt="health"
-          className="w-screen h-[50vh] lg:h-80 lg:p-4 rounded-xl opacity-35"
+          className="w-screen h-[70vh] lg:h-80 lg:p-4 rounded-xl opacity-35"
         />
         <div className="absolute top-0 p-2 lg:p-4">
-          <h3 className="p-4 text-xl font-bold">Welcome !</h3>
-          <div className="text-3xl font-bold p-4">View Appointment</div>
+          <h3 className="lg:p-4 py-2 text-xl font-bold">Welcome !</h3>
+          <div className="text-3xl font-bold py-2 lg:p-4">View Appointment</div>
           <p className=" font-serif lg:p-4 lg:w-[80vw] text-wrap">
             Thank you for choosing our service. We are committed to providing
             you with exceptional care and convenience. You can access your
