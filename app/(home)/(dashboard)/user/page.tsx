@@ -18,10 +18,12 @@ const UserPage = () => {
           <h3 className="p-4 text-xl font-bold">Welcome !</h3>
           <div className="text-3xl font-bold p-4">View Appointment</div>
           <p className=" font-serif lg:p-4 lg:w-[80vw] text-wrap">
-            Thanks for using our service. We are here to help you. You can view
-            your appointment here.We are always tying to provide the best
-            service to you. You can view your appointment here and we Reach
-            Patient Appointment at home
+            Thank you for choosing our service. We are committed to providing
+            you with exceptional care and convenience. You can access your
+            appointment details through the provided link. As part of our
+            dedication to your well-being, we also offer home visits for patient
+            appointments. Your health and satisfaction are our top priorities,
+            and we are here to assist you every step of the way.
           </p>
           <div className="flex mt-6 lg:w-[80vw] justify-center">
             <Button className="bg-blue-600 text-white">

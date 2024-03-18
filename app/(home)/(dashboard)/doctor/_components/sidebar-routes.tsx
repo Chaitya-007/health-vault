@@ -10,9 +10,14 @@ const guestRoutes = [
     href: "/",
   },
   {
+    icon: Layout,
+    label: "Dashboard",
+    href: "/doctor",
+  },
+  {
     icon: Smile,
     label: "Waiting Appointment",
-    href: "/waiting-appointment",
+    href: "/doctor/waiting-appointment",
   },
 ];
 export const SidebarRoutes = () => {
