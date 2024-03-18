@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
-
+import "@uploadthing/react/styles.css";
 export const metadata: Metadata = {
   title: "Health Vault",
   description: "Health Vault is a personal health record app.",
