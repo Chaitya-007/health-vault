@@ -35,11 +35,11 @@ const DoctorPage = () => {
         <Image
           src={healthimage}
           alt="health"
-          className="w-screen h-[50vh] lg:h-96 lg:p-4 rounded-xl opacity-35"
+          className="w-screen h-[70vh] lg:h-96 lg:p-4 rounded-xl opacity-35"
         />
         <div className="absolute top-0 p-2 lg:p-4">
-          <h3 className="p-4 text-xl font-bold">Welcome !</h3>
-          <div className="text-3xl font-bold p-4">View Appointment</div>
+          <h3 className="lg:p-4 py-2 text-xl font-bold">Welcome !</h3>
+          <div className="text-3xl font-bold py-2 lg:p-4">View Appointment</div>
           <p className=" font-serif lg:p-4 lg:w-[80vw] text-wrap">
             Thank you for entrusting us with your healthcare needs. As your
             dedicated healthcare provider, I am committed to delivering the
