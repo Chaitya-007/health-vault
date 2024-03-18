@@ -59,22 +59,16 @@ const DoctorPage = () => {
         <h2 className="text-3xl m-4">Status</h2>
         <div className="flex flex-wrap justify-between">
           {doctorAppointments.map((appointments, index) => (
-            <div
-              key={index}
-              className="w-[40vw] border border-cyan-600 rounded-xl m-4"
-            >
-              <h2 className="p-3 text-xl font-bold">
-                {appointments.appointmentCount}
-              </h2>
-              <p className="p-3 text-xl font-bold">
-                {appointments.appointmentType}
-              </p>
-              <Link href={appointments.appointmentLink}>
-                <div className="bg-yellow-300 text-black pl-4 mt-4 text-xl font-bold rounded-b-xl">
-                  View Details
-                </div>
-              </Link>
-            </div>
+            <Link key={index} href={appointments.appointmentLink}>
+              <div className="w-[40vw] border border-cyan-600 rounded-xl m-4">
+                <h2 className="p-3 text-xl font-bold">
+                  {appointments.appointmentCount}
+                </h2>
+                <p className="p-3 text-xl font-bold">
+                  {appointments.appointmentType}
+                </p>
+              </div>
+            </Link>
           ))}
         </div>
       </div>
