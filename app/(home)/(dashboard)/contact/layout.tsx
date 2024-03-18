@@ -6,7 +6,7 @@ const ContactLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div>
       <Navbar />
-      <div className="h-[40rem] relative">
+      <div className="relative">
         <div className="w-full absolute top-0 inset-0 h-screen z-10">
           <SparklesCore
             id="tsparticlesfullpage"

@@ -6,14 +6,16 @@ import Contact from "@/components/EmailContact/PerfectContact";
 const ContactPage = () => {
   return (
     <>
-      <main className="pt-32 max-w-full ">
+      <main className="pt-24 w-screen">
         <ContactRight />
-        <section className="flex lg:flex-row mb-4 lg:mb-16 items-center flex-col">
-          <div className="lg:w-1/2 text-center h-[60vh] lg:block hidden w-full z-40">
-            <EarthCanvas />
-          </div>
-          <div className="lg:w-1/2 w-11/12 z-40">
-            <Contact />
+        <section className="flex flex-col mb-4 lg:mb-16 items-center">
+          <div className="w-full flex lg:flex-row justify-center">
+            <div className="lg:w-1/2 text-center h-[60vh] lg:block hidden w-full z-40">
+              <EarthCanvas />
+            </div>
+            <div className="lg:w-1/2 w-11/12 z-40">
+              <Contact />
+            </div>
           </div>
         </section>
       </main>
