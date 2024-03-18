@@ -65,8 +65,8 @@ const MedicalHistory: React.FC = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {medicalRecords.map((plan) => (
-            <TableRow key={plan.id}>
+          {medicalRecords.map((plan, index) => (
+            <TableRow key={index}>
               <TableCell className="font-medium">{plan.date}</TableCell>
               <TableCell>{plan.diagnosis}</TableCell>
               <TableCell>{plan.medication}</TableCell>
@@ -120,8 +120,8 @@ const MedicalHistory: React.FC = () => {
     <div
       className={`flex flex-col items-center justify-start mt-8 dark:text-white`}
     >
-      <div className="w-1/2">
-        <div className={`rounded-lg shadow-lg p-4 dark:bg-gray-800`}>
+      <div className="lg:w-1/2">
+        <div className={`rounded-lg shadow-lg w-full p-4 dark:bg-gray-800`}>
           <div className="mb-4">
             {/* Dark mode toggle button */}
 
@@ -130,7 +130,7 @@ const MedicalHistory: React.FC = () => {
               Add New Medical Record
             </h3>
             <form onSubmit={handleSubmit(processForm)}>
-              <div className="flex items-center">
+              <div className="lg:flex items-center">
                 <div className="mr-1">
                   {/* <Popover>
                     <PopoverTrigger asChild>
@@ -159,14 +159,14 @@ const MedicalHistory: React.FC = () => {
                   <input
                     type="date"
                     {...register("date")}
-                    className="p-2 rounded-lg border border-white"
+                    className="p-2 my-2 w-full rounded-lg border border-white"
                   />
                 </div>
                 <div>
                   <Input
                     type="text"
                     placeholder="Diagnosis"
-                    className="rounded-lg border-gray-300 p-2 mr-2"
+                    className="rounded-lg my-2 border-gray-300 p-2 mr-2"
                     {...register("diagnosis", { required: true })}
                   />
                   {errors.diagnosis && (
@@ -179,7 +179,7 @@ const MedicalHistory: React.FC = () => {
                   <Input
                     type="text"
                     placeholder="Medication"
-                    className="rounded-lg border-gray-300 p-2 mr-2"
+                    className="rounded-lg border-gray-300 my-2  p-2 mr-2"
                     {...register("medication", { required: true })}
                   />
                   {errors.medication && (
@@ -190,7 +190,7 @@ const MedicalHistory: React.FC = () => {
                 </div>
                 <Button
                   type="submit"
-                  className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+                  className="bg-blue-500 w-full lg:w-20 text-white py-2 px-4 rounded-lg"
                 >
                   Add
                 </Button>

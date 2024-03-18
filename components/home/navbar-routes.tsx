@@ -3,7 +3,8 @@
 import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 import ModeToggle from "@/components/DarkMode";
 import Link from "next/link";
-import Logo from "@/components/navbar/logo";
+import { MobileSidebar } from "./mobile-sidebar";
+import Logo from "../navbar/logo";
 
 const Links = [
   { name: "Home", href: "/" },
@@ -17,16 +18,19 @@ export const NavbarRoutes = () => {
   return (
     <>
       <div className="flex justify-between items-center w-screen">
-        <Logo />
-        <div className="flex px-2 items-center">
+        <MobileSidebar />
+        <div className="hidden lg:block">
+          <Logo />
+        </div>
+        <div className="flex lg:px-2 items-center">
           {Links.map((link) => (
-            <div className="mx-4" key={link.href}>
+            <div className="mx-4 hidden lg:block" key={link.href}>
               <Link href={link.href} key={link.name}>
                 {link.name}
               </Link>
             </div>
           ))}
-          <div className="mx-4">
+          <div className="lg:mx-4 mx-2">
             <ModeToggle />
           </div>
           {userId ? (

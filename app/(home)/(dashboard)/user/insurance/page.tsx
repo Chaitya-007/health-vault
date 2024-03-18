@@ -84,8 +84,8 @@ const InsurancePage: React.FC = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {insurancePlans.map((plan) => (
-            <TableRow key={plan.id}>
+          {insurancePlans.map((plan, index) => (
+            <TableRow key={index}>
               <TableCell className="font-medium">{plan.name}</TableCell>
               <TableCell>{plan.company}</TableCell>
               <TableCell>${plan.insuranceCost}</TableCell>
@@ -98,7 +98,7 @@ const InsurancePage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-start mt-8">
-      <div className="w-1/2">
+      <div className="lg:w-1/2">
         <div
           className={`rounded-lg shadow-lg p-4 ${
             darkMode ? "bg-gray-800" : "bg-white dark:bg-gray-800"
@@ -167,7 +167,7 @@ const InsurancePage: React.FC = () => {
           {/* Render existing insurance plans */}
         </div>
       </div>
-      <div className="mt-8 w-[80vw]">{renderInsurancePlans()}</div>
+      <div className="mt-8 lg:w-[80vw]">{renderInsurancePlans()}</div>
       <Toaster position="bottom-right" />
     </div>
   );
