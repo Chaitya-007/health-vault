@@ -35,7 +35,7 @@ const UserPage = () => {
         <Image
           src={healthimage}
           alt="health"
-          className="w-screen h-[70vh] lg:h-80 lg:p-4 rounded-xl opacity-35"
+          className="w-screen h-[60vh] lg:h-80 lg:p-4 rounded-xl opacity-35"
         />
         <div className="absolute top-0 p-2 lg:p-4">
           <h3 className="lg:p-4 py-2 text-xl font-bold">Welcome !</h3>
