@@ -21,6 +21,8 @@ interface InsurancePlan {
   name: string;
   company: string;
   insuranceCost: number;
+  benificial: string;
+  document: string;
 }
 export type InsuaranceFormSchema = z.infer<typeof InsuranceSchema>;
 const InsurancePage: React.FC = () => {
@@ -64,7 +66,10 @@ const InsurancePage: React.FC = () => {
     const { success } = await response.json();
     console.log(success);
     if (success) {
-      addInsurancePlan({ ...data, id: userId! });
+      addInsurancePlan({
+        ...data,
+        id: userId!,
+      });
       toast("Data has been sent!");
       reset();
       return;
@@ -78,9 +83,11 @@ const InsurancePage: React.FC = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Name</TableHead>
+            <TableHead>Policy Name</TableHead>
             <TableHead>Company</TableHead>
-            <TableHead>Insuarance Prize</TableHead>
+            <TableHead>Claim Date</TableHead>
+            <TableHead>Benificial</TableHead>
+            <TableHead>Document</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -98,7 +105,7 @@ const InsurancePage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-start mt-8">
-      <div className="lg:w-1/2">
+      <div>
         <div
           className={`rounded-lg shadow-lg p-4 ${
             darkMode ? "bg-gray-800" : "bg-white dark:bg-gray-800"
@@ -152,6 +159,14 @@ const InsurancePage: React.FC = () => {
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
                   {...register("insuranceCost", { required: true })}
+                />
+                <Input
+                  type="text"
+                  placeholder="Benificial"
+                  className={`rounded-lg border-${
+                    darkMode ? "white" : "gray"
+                  }-300 p-2 mr-2`}
+                  {...register("benificial", { required: true })}
                 />
                 <Button
                   type="submit"

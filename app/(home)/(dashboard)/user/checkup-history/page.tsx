@@ -5,6 +5,9 @@ interface Checkup {
   date: string;
   doctor: string;
   diagnosis: string;
+  bill: number;
+  precription: string;
+  document: string;
 }
 import {
   Table,
@@ -19,24 +22,43 @@ import {
 const CheckupHistory: React.FC = () => {
   // Sample checkup history data
   const sampleCheckupHistory: Checkup[] = [
-    { id: 1, date: "2023-12-10", doctor: "Dr. Smith", diagnosis: "Fever" },
+    {
+      id: 1,
+      date: "2023-12-10",
+      doctor: "Dr. Smith",
+      diagnosis: "Fever",
+      precription: "paracetamol",
+      bill: 100,
+      document: "https://www.google.com",
+    },
     {
       id: 2,
-      date: "2024-01-15",
+      date: "2023-12-10",
       doctor: "Dr. Johnson",
-      diagnosis: "Sprained ankle",
+      bill: 100,
+      diagnosis: "Cough",
+      precription: "paracetamol",
+      document: "https://www.google.com",
     },
-    { id: 3, date: "2024-02-20", doctor: "Dr. Lee", diagnosis: "Common cold" },
+    {
+      id: 3,
+      date: "2023-12-10",
+      doctor: "Dr. Lee",
+      bill: 100,
+      diagnosis: "Headache",
+      precription: "paracetamol",
+      document: "https://www.google.com",
+    },
+    {
+      id: 4,
+      date: "2023-12-10",
+      doctor: "Dr. Kim",
+      diagnosis: "Stomachache",
+      bill: 100,
+      precription: "paracetamol",
+      document: "https://www.google.com",
+    },
   ];
-
-  // <div
-  //   key={checkup.id}
-  //   className="flex justify-between items-center border-b border-gray-200 py-2 px-4"
-  // >
-  //   <span className="text-gray-600">{checkup.date}</span>
-  //   <span className="font-semibold text-blue-600">{checkup.doctor}</span>
-  //   <span className="text-gray-700">{checkup.diagnosis}</span>
-  // </div>
   const renderCheckupHistory = () => {
     return (
       <Table>

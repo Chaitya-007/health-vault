@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import healthimage from "@/public/health.jpg";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Isavailable from "./_components/isavailable";
 
 const doctorAppointments = [
   {
@@ -50,10 +50,9 @@ const DoctorPage = () => {
             Your health is my priority, and I am here to support you in
             achieving your wellness goals.
           </p>
-          <div className="flex mt-6 lg:w-[80vw] justify-center">
-            <Button className="bg-blue-600 text-white">
-              <Link href="/appointment">View Appointment</Link>
-            </Button>
+
+          <div className="flex mt-6 lg:w-[80vw] justify-center items-center">
+            <Isavailable />
           </div>
         </div>
         <h2 className="text-3xl m-4">Status</h2>

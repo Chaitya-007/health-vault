@@ -13,6 +13,9 @@ const Uploadthing = () => {
         onClientUploadComplete={(url) => {
           setFile(url[0].url);
         }}
+        onUploadError={(error) => {
+          console.error(error);
+        }}
       />
       {file && (
         <Image

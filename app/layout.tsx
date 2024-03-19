@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 import "@uploadthing/react/styles.css";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
+import { EdgeStoreProvider } from "../lib/edgestore";
 
 import { ourFileRouter } from "@/app/api/uploadthing/core";
 
@@ -31,7 +32,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-            {children}
+            <EdgeStoreProvider>{children}</EdgeStoreProvider>
           </ThemeProvider>
         </body>
       </ClerkProvider>
