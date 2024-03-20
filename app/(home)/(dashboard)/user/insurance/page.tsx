@@ -123,17 +123,19 @@ const InsurancePage: React.FC = () => {
               <TableCell>${plan.insuranceCost}</TableCell>
               <TableCell>{plan.benificial || "no Benificial"}</TableCell>
               <TableCell>${plan.policyamount || "no amount"}</TableCell>
-              <TableCell>
-                {plan.document.map((doc, index) => (
-                  <Link
-                    key={index}
-                    href={doc}
-                    target="_blank"
-                    className="text-blue-500"
-                  >
-                    Document {index + 1}
-                  </Link>
-                ))}
+              <TableCell className="flex flex-col my-2">
+                {plan.document
+                  ? plan.document.map((doc, index) => (
+                      <Link
+                        key={index}
+                        href={doc}
+                        target="_blank"
+                        className="text-blue-500"
+                      >
+                        Document {index + 1}
+                      </Link>
+                    ))
+                  : "No Document"}
               </TableCell>
             </TableRow>
           ))}
