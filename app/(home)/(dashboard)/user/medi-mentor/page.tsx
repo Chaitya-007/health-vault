@@ -61,19 +61,21 @@ const GeminiAi = () => {
       history: [
         {
           role: "user",
-          parts: [{ text: "Prathamesh Chougale is the author" }],
+          parts: [{ text: "Medical Input" }],
         },
         {
           role: "model",
           parts: [
             {
-              text: ".Hello, I am Prathamesh Chougale, This model is created by Google AI. I am here to help you with your queries. Please ask me anything.",
+              text: ".Doctor assistant.",
             },
           ],
         },
       ],
     });
-    const result = await chat.sendMessage(data.search);
+    const result = await chat.sendMessage(
+      data.search + "and give me response in 50 to 60 words"
+    );
     const response = result.response;
     // console.log(response.text());
     setConversation((prev) => [
@@ -96,7 +98,7 @@ const GeminiAi = () => {
     setIsLoading(false);
   };
   return (
-    <main className="flex flex-col justify-between h-screen pt-20">
+    <main className="flex flex-col justify-between h-screen pt-10">
       <div className="h-[85vh] pt-1 overflow-scroll no-scrollbar">
         {Conversation.map((item, index) => {
           return (
