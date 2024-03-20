@@ -75,19 +75,6 @@ const MedicalHistory: React.FC = () => {
     <div
       className={`flex flex-col items-center justify-start mt-8 dark:text-white`}
     >
-      <div className="lg:w-1/2">
-        <div className={`rounded-lg shadow-lg w-full p-4 dark:bg-gray-800`}>
-          <div className="mb-4">
-            {/* Dark mode toggle button */}
-
-            {/* Form to add a new medical record */}
-            <h3 className={`text-md font-semibold mb-2 dark:text-white`}>
-              Add New Medical Record
-            </h3>
-          </div>
-          {/* Render existing medical records */}
-        </div>
-      </div>
       <div className="w-[85vw] mt-20">
         <h2 className="text-lg font-semibold mb-4">Medical Records</h2>
         {renderMedicalRecords()}
