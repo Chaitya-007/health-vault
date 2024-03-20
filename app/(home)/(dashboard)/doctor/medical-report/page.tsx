@@ -202,7 +202,7 @@ const MedicalReportPage = () => {
                                 }
                               },
                             });
-                            setUrl(url);
+                            setUrl(res.url);
                           } catch (err) {
                             updateFileProgress(addedFileState.key, "ERROR");
                           }

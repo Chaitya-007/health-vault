@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Checkup {
   id: number;
@@ -19,47 +19,62 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Link from "next/link";
+import { useAuth } from "@clerk/nextjs";
 
 const CheckupHistory: React.FC = () => {
   // Sample checkup history data
-  const sampleCheckupHistory: Checkup[] = [
-    {
-      id: 1,
-      date: "2023-12-10",
-      doctor: "Dr. Smith",
-      diagnosis: "Fever",
-      precription: "paracetamol",
-      bill: 100,
-      document: "https://www.google.com",
-    },
-    {
-      id: 2,
-      date: "2023-12-10",
-      doctor: "Dr. Johnson",
-      bill: 100,
-      diagnosis: "Cough",
-      precription: "paracetamol",
-      document: "https://www.google.com",
-    },
-    {
-      id: 3,
-      date: "2023-12-10",
-      doctor: "Dr. Lee",
-      bill: 100,
-      diagnosis: "Headache",
-      precription: "paracetamol",
-      document: "https://www.google.com",
-    },
-    {
-      id: 4,
-      date: "2023-12-10",
-      doctor: "Dr. Kim",
-      diagnosis: "Stomachache",
-      bill: 100,
-      precription: "paracetamol",
-      document: "https://www.google.com",
-    },
-  ];
+  // const sampleCheckupHistory: Checkup[] = [
+  //   {
+  //     id: 1,
+  //     date: "2023-12-10",
+  //     doctor: "Dr. Smith",
+  //     diagnosis: "Fever",
+  //     precription: "paracetamol",
+  //     bill: 100,
+  //     document: "https://www.google.com",
+  //   },
+  //   {
+  //     id: 2,
+  //     date: "2023-12-10",
+  //     doctor: "Dr. Johnson",
+  //     bill: 100,
+  //     diagnosis: "Cough",
+  //     precription: "paracetamol",
+  //     document: "https://www.google.com",
+  //   },
+  //   {
+  //     id: 3,
+  //     date: "2023-12-10",
+  //     doctor: "Dr. Lee",
+  //     bill: 100,
+  //     diagnosis: "Headache",
+  //     precription: "paracetamol",
+  //     document: "https://www.google.com",
+  //   },
+  //   {
+  //     id: 4,
+  //     date: "2023-12-10",
+  //     doctor: "Dr. Kim",
+  //     diagnosis: "Stomachache",
+  //     bill: 100,
+  //     precription: "paracetamol",
+  //     document: "https://www.google.com",
+  //   },
+  // ];
+  const [Checkups, setCheckups] = useState<Checkup[]>([]);
+  const { userId } = useAuth();
+  useEffect(() => {
+    const getCheckupData = async () => {
+      try {
+        const response = await fetch(`/api/insurance/${userId}`);
+        const data = await response.json();
+        setCheckups(data);
+      } catch (error) {
+        console.error("Error fetching insurance data:", error);
+      }
+    };
+    getCheckupData();
+  }, [userId]);
   const renderCheckupHistory = () => {
     return (
       <Table>
@@ -74,7 +89,7 @@ const CheckupHistory: React.FC = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sampleCheckupHistory.map((checkup) => (
+          {Checkups.map((checkup) => (
             <TableRow key={checkup.id}>
               <TableCell className="font-medium">{checkup.date}</TableCell>
               <TableCell>{checkup.diagnosis}</TableCell>
