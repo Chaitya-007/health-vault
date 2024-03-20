@@ -27,7 +27,7 @@ const Appointmentpage = ({ id, userid }: { id: string; userid: string }) => {
   // const [CheckupRecord, setCheckupRecord] = useState<AppointmentpageForm[]>([]);
   const [darkMode, setDarkMode] = useState(false);
   const processForm: SubmitHandler<AppointmentpageForm> = async (data) => {
-    const response = await fetch("/api/appointmentpage", {
+    const response = await fetch("/api/appointment", {
       method: "POST",
       body: JSON.stringify({ ...data, id: id, userid: userid }),
     });
