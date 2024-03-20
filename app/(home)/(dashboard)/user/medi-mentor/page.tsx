@@ -74,7 +74,8 @@ const GeminiAi = () => {
       ],
     });
     const result = await chat.sendMessage(
-      data.search + "and give me response in 50 to 60 words"
+      data.search +
+        "and give me response in 50 to 60 words with proper medical terms"
     );
     const response = result.response;
     // console.log(response.text());
