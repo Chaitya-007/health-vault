@@ -85,6 +85,7 @@ export async function getDoctorBySlug(slug: string): Promise<Doctor> {
         "image": image.asset->url,
         "specialty":specialty._ref,
         phone,
+        doctorid,
         email,
         location,
         "pastExperience": pastExperience[]._ref,
