@@ -21,7 +21,6 @@ const AvailableDocter: React.FC = async () => {
   // Sample doctor data
   const doctors = await getDoctors();
   const specility = await getSpecialties();
-  console.log(doctors);
   // const specialty = await getSpecialtiesbyID(doctors[].specialty);
 
   // <div
@@ -42,7 +41,7 @@ const AvailableDocter: React.FC = async () => {
             <TableHead>Name</TableHead>
             <TableHead>Specialty</TableHead>
             <TableHead>Time</TableHead>
-            <TableHead>Info</TableHead>
+            <TableHead>Appointment</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -61,7 +60,7 @@ const AvailableDocter: React.FC = async () => {
                     href={`/user/available-doctors/${doctor.slug}`}
                     className="text-blue-600"
                   >
-                    View
+                    Take Appointment
                   </Link>
                 }
               </TableCell>

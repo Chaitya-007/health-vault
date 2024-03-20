@@ -104,8 +104,24 @@ export async function getSpecialties(): Promise<Specialty[]> {
 `)
 }
 
+export async function getSpecialtiesById(id: string): Promise<Specialty> {
+    return client.fetch(groq`*[_type == "specialty" && _id=="${id}"][0]{
+        "name": title,
+        description
+    }
+`)
+}
+
 export async function getWork(): Promise<Work[]> {
     return client.fetch(groq`*[_type == "workandexperience"]{
+        hospital,
+        year,
+    }
+`)
+}
+
+export async function getWorkById(id: string): Promise<Work> {
+    return client.fetch(groq`*[_type == "workandexperience" && _id=="${id}"][0]{
         hospital,
         year,
     }
