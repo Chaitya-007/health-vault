@@ -26,7 +26,7 @@ const guestRoutes = [
   },
   {
     icon: BaggageClaim,
-    label: "Profile",
+    label: "Checkup History",
     href: "/doctor/checkup-history",
   },
 ];
