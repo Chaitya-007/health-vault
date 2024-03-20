@@ -6,6 +6,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { getDoctors, getSpecialties } from "@/sanity/sanity-util";
+import Link from "next/link";
 import React from "react";
 
 interface Doctor {
@@ -15,14 +17,12 @@ interface Doctor {
   available: boolean;
 }
 
-const AvailableDocter: React.FC = () => {
+const AvailableDocter: React.FC = async () => {
   // Sample doctor data
-  const sampleDoctors: Doctor[] = [
-    { id: 1, name: "Dr. Smith", specialty: "Cardiology", available: true },
-    { id: 2, name: "Dr. Johnson", specialty: "Dermatology", available: false },
-    { id: 3, name: "Dr. Lee", specialty: "Orthopedics", available: true },
-    { id: 4, name: "Dr. Kim", specialty: "Pediatrics", available: true },
-  ];
+  const doctors = await getDoctors();
+  const specility = await getSpecialties();
+  console.log(doctors);
+  // const specialty = await getSpecialtiesbyID(doctors[].specialty);
 
   // <div
   //   key={doctor.id}
@@ -41,16 +41,29 @@ const AvailableDocter: React.FC = () => {
           <TableRow>
             <TableHead>Name</TableHead>
             <TableHead>Specialty</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead>Time</TableHead>
+            <TableHead>Info</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {sampleDoctors.map((doctor) => (
-            <TableRow key={doctor.id}>
+          {doctors.map((doctor, index) => (
+            <TableRow key={index}>
               <TableCell className="font-medium">{doctor.name}</TableCell>
-              <TableCell>{doctor.specialty}</TableCell>
               <TableCell>
-                {doctor.available ? "Available" : "Not Available"}
+                {specility.map((sp) => {
+                  if (sp._id === doctor.specialty) return sp.name;
+                })}
+              </TableCell>
+              <TableCell>{doctor.timing}</TableCell>
+              <TableCell>
+                {
+                  <Link
+                    href={`/user/available-doctors/${doctor.slug}`}
+                    className="text-blue-600"
+                  >
+                    View
+                  </Link>
+                }
               </TableCell>
             </TableRow>
           ))}

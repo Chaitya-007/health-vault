@@ -44,8 +44,8 @@ export interface Doctor {
 }
 
 export interface Specialty {
-    name: string;
     _id: string;
+    name: string;
     description: string;
 }
 
@@ -96,9 +96,9 @@ export async function getDoctorBySlug(slug: string): Promise<Doctor> {
 }
 
 export async function getSpecialties(): Promise<Specialty[]> {
-    return client.fetch(groq`*[_type == "specialty"]{
-        "name": title,
+    return client.fetch(groq`*[_type == "specialty" ]{
         _id,
+        "name": title,
         description
     }
 `)
