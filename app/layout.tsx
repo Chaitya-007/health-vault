@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <ClerkProvider>
-        <body>
+        <body className="no-scrollbar">
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

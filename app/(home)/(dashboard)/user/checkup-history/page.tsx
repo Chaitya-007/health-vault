@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 
 const CheckupHistory: React.FC = () => {
   // Sample checkup history data
@@ -67,6 +68,9 @@ const CheckupHistory: React.FC = () => {
             <TableHead>Date</TableHead>
             <TableHead>Diagnosis</TableHead>
             <TableHead>Doctors</TableHead>
+            <TableHead>Bill</TableHead>
+            <TableHead>Precription</TableHead>
+            <TableHead>Document</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -75,6 +79,17 @@ const CheckupHistory: React.FC = () => {
               <TableCell className="font-medium">{checkup.date}</TableCell>
               <TableCell>{checkup.diagnosis}</TableCell>
               <TableCell>{checkup.doctor}</TableCell>
+              <TableCell>{checkup.bill}</TableCell>
+              <TableCell>{checkup.precription}</TableCell>
+              <TableCell>
+                <Link
+                  href={checkup.document}
+                  target="_blank"
+                  className="text-primary"
+                >
+                  View Document
+                </Link>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

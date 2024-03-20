@@ -99,7 +99,7 @@ const GeminiAi = () => {
     setIsLoading(false);
   };
   return (
-    <main className="flex flex-col justify-between h-screen pt-10">
+    <main className="flex flex-col justify-between h-screen pt-10 no-scrollbar">
       <div className="h-[85vh] pt-1 overflow-scroll no-scrollbar">
         {Conversation.map((item, index) => {
           return (
