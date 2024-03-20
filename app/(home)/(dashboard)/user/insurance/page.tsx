@@ -18,6 +18,7 @@ import { z } from "zod";
 import { Toaster, toast } from "sonner";
 import { useEdgeStore } from "@/lib/edgestore";
 import { FileState, MultiFileDropzone } from "@/components/MultiFileDropzone";
+import Link from "next/link";
 interface InsurancePlan {
   id: string;
   policynumber: string;
@@ -78,6 +79,7 @@ const InsurancePage: React.FC = () => {
     });
   }
   const processForm: SubmitHandler<InsuaranceFormSchema> = async (data) => {
+    data.document = url;
     const response = await fetch("/api/insurance", {
       method: "POST",
       body: JSON.stringify({ ...data, id: userId! }),
@@ -121,7 +123,18 @@ const InsurancePage: React.FC = () => {
               <TableCell>${plan.insuranceCost}</TableCell>
               <TableCell>{plan.benificial || "no Benificial"}</TableCell>
               <TableCell>${plan.policyamount || "no amount"}</TableCell>
-              <TableCell>{"hello"}</TableCell>
+              <TableCell>
+                {plan.document.map((doc, index) => (
+                  <Link
+                    key={index}
+                    href={doc}
+                    target="_blank"
+                    className="text-blue-500"
+                  >
+                    Document {index + 1}
+                  </Link>
+                ))}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
