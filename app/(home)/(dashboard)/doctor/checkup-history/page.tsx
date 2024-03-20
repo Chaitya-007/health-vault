@@ -202,7 +202,7 @@ const CheckupHistoryPage = () => {
                                 }
                               },
                             });
-                            setUrl(url);
+                            setUrl(res.url);
                           } catch (err) {
                             updateFileProgress(addedFileState.key, "ERROR");
                           }
