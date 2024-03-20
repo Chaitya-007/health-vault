@@ -92,6 +92,7 @@ const InsurancePage: React.FC = () => {
         id: userId!,
       });
       toast("Data has been sent!");
+      setUrl([]);
       reset();
       return;
     }
@@ -270,9 +271,6 @@ const InsurancePage: React.FC = () => {
                     darkMode ? "hover:bg-blue-600" : "hover:bg-blue-400"
                   } focus:outline-none`}
                   disabled={url.length === 0 || isSubmitting}
-                  onClick={() => {
-                    setUrl([]);
-                  }}
                 >
                   Add
                 </Button>
