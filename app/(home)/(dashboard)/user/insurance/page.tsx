@@ -22,7 +22,6 @@ import Link from "next/link";
 interface InsurancePlan {
   id: string;
   policynumber: string;
-  policyamount: number;
   name: string;
   company: string;
   claimdate: string;
@@ -124,7 +123,7 @@ const InsurancePage: React.FC = () => {
               <TableCell>{plan.company}</TableCell>
               <TableCell>{plan.claimdate}</TableCell>
               <TableCell>{plan.benificial}</TableCell>
-              <TableCell>${plan.policyamount}</TableCell>
+              <TableCell>${plan.insuranceCost}</TableCell>
               <TableCell className="flex flex-col my-2">
                 {plan.document
                   ? plan.document.map((doc, index) => (
