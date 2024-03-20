@@ -7,6 +7,7 @@ import {
   Layout,
   MehIcon,
   TvIcon,
+  Bot,
 } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
@@ -45,6 +46,11 @@ const guestRoutes = [
     icon: Compass,
     label: "Appointments",
     href: "/user/appointments",
+  },
+  {
+    icon: Bot,
+    label: "Medi Mentor",
+    href: "/user/medi-mentor",
   },
 ];
 export const SidebarRoutes = () => {
