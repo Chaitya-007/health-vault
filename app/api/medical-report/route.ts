@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
     const MongodbClient = await clientPromise;
     const db = MongodbClient.db("Anantya");
-    const collection = db.collection("insurance");
+    const collection = db.collection("medical-report");
     const data = await collection.find().toArray();
     return NextResponse.json(data);
 }

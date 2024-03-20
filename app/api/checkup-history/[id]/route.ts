@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest, id: { params: { id: string } }) {
     const MongodbClient = await clientPromise;
     const db = MongodbClient.db("Anantya");
-    const collection = db.collection("medical-report");
+    const collection = db.collection("checkup-history");
     const data = await collection.find({ id: id.params.id }).toArray();
     console.log(data);
     return NextResponse.json(data);
