@@ -66,7 +66,7 @@ const CheckupHistory: React.FC = () => {
   useEffect(() => {
     const getCheckupData = async () => {
       try {
-        const response = await fetch(`/api/insurance/${userId}`);
+        const response = await fetch(`/api/checkup-history/${userId}`);
         const data = await response.json();
         setCheckups(data);
       } catch (error) {
