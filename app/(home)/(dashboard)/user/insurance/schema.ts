@@ -5,5 +5,8 @@ export const InsuranceSchema = z.object({
     company: z.string().min(2, { message: "Company name is too short write the full company info" }),
     insuranceCost: z.number().min(10000, { message: "Cost is too low" }),
     benificial: z.string().min(2, { message: "Please write the full benificial info" }),
-    document: z.string().url({ message: "Please provide a valid URL" }),
+    policyamount: z.number().min(10000, { message: "Policy amount is too low" }),
+    policynumber: z.string().min(2, { message: "Please write the full policy number" }),
+    claimdate: z.string().min(2, { message: "Please write the full claim date" }),
+    document: z.string().array().min(1, { message: "Please upload single document" }),
 })

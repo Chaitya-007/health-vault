@@ -16,13 +16,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { InsuranceSchema } from "./schema";
 import { z } from "zod";
 import { Toaster, toast } from "sonner";
+import { useEdgeStore } from "@/lib/edgestore";
+import { FileState, MultiFileDropzone } from "@/components/MultiFileDropzone";
 interface InsurancePlan {
   id: string;
+  policynumber: string;
+  policyamount: number;
   name: string;
   company: string;
   insuranceCost: number;
   benificial: string;
-  document: string;
+  document: string[];
 }
 export type InsuaranceFormSchema = z.infer<typeof InsuranceSchema>;
 const InsurancePage: React.FC = () => {
@@ -57,7 +61,22 @@ const InsurancePage: React.FC = () => {
   const addInsurancePlan = (plan: InsurancePlan) => {
     setInsurancePlans([...insurancePlans, plan]);
   };
+  const [fileStates, setFileStates] = useState<FileState[]>([]);
+  const { edgestore } = useEdgeStore();
+  const [url, setUrl] = useState<string[]>([]);
 
+  function updateFileProgress(key: string, progress: FileState["progress"]) {
+    setFileStates((fileStates) => {
+      const newFileStates = structuredClone(fileStates);
+      const fileState = newFileStates.find(
+        (fileState) => fileState.key === key
+      );
+      if (fileState) {
+        fileState.progress = progress;
+      }
+      return newFileStates;
+    });
+  }
   const processForm: SubmitHandler<InsuaranceFormSchema> = async (data) => {
     const response = await fetch("/api/insurance", {
       method: "POST",
@@ -83,19 +102,26 @@ const InsurancePage: React.FC = () => {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>Policy Number</TableHead>
             <TableHead>Policy Name</TableHead>
             <TableHead>Company</TableHead>
             <TableHead>Claim Date</TableHead>
             <TableHead>Benificial</TableHead>
+            <TableHead>Policy Amount</TableHead>
             <TableHead>Document</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {insurancePlans.map((plan, index) => (
             <TableRow key={index}>
+              <TableCell>{plan.policynumber}</TableCell>
               <TableCell className="font-medium">{plan.name}</TableCell>
+
               <TableCell>{plan.company}</TableCell>
               <TableCell>${plan.insuranceCost}</TableCell>
+              <TableCell>{plan.benificial || "no Benificial"}</TableCell>
+              <TableCell>${plan.policyamount || "no amount"}</TableCell>
+              <TableCell>{"hello"}</TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -137,7 +163,15 @@ const InsurancePage: React.FC = () => {
               <div className="flex items-center">
                 <Input
                   type="text"
-                  placeholder="Name"
+                  placeholder="Policy Number"
+                  className={`rounded-lg border-${
+                    darkMode ? "white" : "gray"
+                  }-300 p-2 mr-2`}
+                  {...register("policynumber", { required: true })}
+                />
+                <Input
+                  type="text"
+                  placeholder="Policy Name"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
@@ -145,7 +179,7 @@ const InsurancePage: React.FC = () => {
                 />
                 <Input
                   type="text"
-                  placeholder="company"
+                  placeholder="Company"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
@@ -153,12 +187,20 @@ const InsurancePage: React.FC = () => {
                 />
                 <Input
                   type="number"
-                  placeholder="insuranceCost"
+                  placeholder="Insurance Cost"
                   step="0.01"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
                   {...register("insuranceCost", { required: true })}
+                />
+                <Input
+                  placeholder="Claim Date"
+                  step="0.01"
+                  className={`rounded-lg border-${
+                    darkMode ? "white" : "gray"
+                  }-300 p-2 mr-2`}
+                  {...register("claimdate", { required: true })}
                 />
                 <Input
                   type="text"
@@ -168,11 +210,51 @@ const InsurancePage: React.FC = () => {
                   }-300 p-2 mr-2`}
                   {...register("benificial", { required: true })}
                 />
+              </div>
+              <div className="flex mt-6 justify-center">
+                <MultiFileDropzone
+                  value={fileStates}
+                  onChange={(files) => {
+                    setFileStates(files);
+                  }}
+                  onFilesAdded={async (addedFiles) => {
+                    setFileStates([...fileStates, ...addedFiles]);
+                    await Promise.all(
+                      addedFiles.map(async (addedFileState) => {
+                        try {
+                          const res = await edgestore.publicFiles.upload({
+                            file: addedFileState.file,
+                            onProgressChange: async (progress) => {
+                              updateFileProgress(addedFileState.key, progress);
+                              if (progress === 100) {
+                                // wait 1 second to set it to complete
+                                // so that the user can see the progress bar at 100%
+                                await new Promise((resolve) =>
+                                  setTimeout(resolve, 1000)
+                                );
+                                updateFileProgress(
+                                  addedFileState.key,
+                                  "COMPLETE"
+                                );
+                              }
+                            },
+                          });
+                          setUrl((url) => [...url, res.url]);
+                        } catch (err) {
+                          updateFileProgress(addedFileState.key, "ERROR");
+                        }
+                      })
+                    );
+                  }}
+                />
+              </div>
+              <div className="flex justify-center w-full mt-3">
                 <Button
                   type="submit"
-                  className={`bg-blue-500 text-white py-2 px-4 rounded-lg ${
+                  className={`bg-blue-500 text-white py-2 px-4 rounded-lg  ${
                     darkMode ? "hover:bg-blue-600" : "hover:bg-blue-400"
                   } focus:outline-none`}
+                  disabled={url.length === 0 || isSubmitting}
                 >
                   Add
                 </Button>
