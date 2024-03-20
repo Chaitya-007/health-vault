@@ -8,7 +8,7 @@ import { Toaster, toast } from "sonner";
 import { useEdgeStore } from "@/lib/edgestore";
 import { FileState, MultiFileDropzone } from "@/components/MultiFileDropzone";
 
-export const CheckupHistory = z.object({
+const CheckupHistory = z.object({
   id: z.string(),
   date: z.string(),
   doctor: z.string(),
@@ -18,7 +18,7 @@ export const CheckupHistory = z.object({
   document: z.string(),
 });
 
-export type CheckupFormHistory = z.infer<typeof CheckupHistory>;
+type CheckupFormHistory = z.infer<typeof CheckupHistory>;
 
 const MedicalReport = () => {
   const {
@@ -89,7 +89,6 @@ const MedicalReport = () => {
   }
   return (
     <div>
-      <h1>Medical Report</h1>
       <div className="flex flex-col items-center justify-start mt-8">
         <div>
           <div
