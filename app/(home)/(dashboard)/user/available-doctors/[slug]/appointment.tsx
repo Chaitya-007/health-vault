@@ -6,28 +6,28 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { Toaster, toast } from "sonner";
 
-const UserAppointmentForm = z.object({
+const UserAppointmentpageForm = z.object({
   name: z.string(),
   date: z.string(),
   time: z.string(),
   query: z.string(),
 });
 
-type AppointmentForm = z.infer<typeof UserAppointmentForm>;
+type AppointmentpageForm = z.infer<typeof UserAppointmentpageForm>;
 
-const Appointment = (id: string) => {
+const Appointmentpage = ({ id }: { id: string }) => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<AppointmentForm>({
+  } = useForm<AppointmentpageForm>({
     // resolver: zodResolver(ContactFormSchema),
   });
-  // const [CheckupRecord, setCheckupRecord] = useState<AppointmentForm[]>([]);
+  // const [CheckupRecord, setCheckupRecord] = useState<AppointmentpageForm[]>([]);
   const [darkMode, setDarkMode] = useState(false);
-  const processForm: SubmitHandler<AppointmentForm> = async (data) => {
-    const response = await fetch("/api/appointment", {
+  const processForm: SubmitHandler<AppointmentpageForm> = async (data) => {
+    const response = await fetch("/api/appointmentpage", {
       method: "POST",
       body: JSON.stringify({ ...data, id: id }),
     });
@@ -114,7 +114,7 @@ const Appointment = (id: string) => {
                   } focus:outline-none`}
                   disabled={isSubmitting}
                 >
-                  Book Appointment
+                  Book Appointmentpage
                 </Button>
               </div>
             </form>
@@ -128,4 +128,4 @@ const Appointment = (id: string) => {
   );
 };
 
-export default Appointment;
+export default Appointmentpage;

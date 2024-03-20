@@ -4,9 +4,11 @@ import {
   getSpecialtiesById,
   getWork,
 } from "@/sanity/sanity-util";
+import { auth, useAuth } from "@clerk/nextjs";
 import Image from "next/image";
 import React from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import Appointmentpage from "./appointment";
 
 const DoctorAppointmentPage = async ({
   params,
@@ -16,6 +18,7 @@ const DoctorAppointmentPage = async ({
   const doctor = await getDoctorBySlug(params.slug);
   const specialty = await getSpecialtiesById(doctor.specialty);
   const work = await getWork();
+  const { userId } = auth();
   return (
     <>
       <div className="min-h-screen bg-gradient-to-r from-indigo-500 to-purple-500 flex justify-center items-start  p-4">
@@ -104,6 +107,7 @@ const DoctorAppointmentPage = async ({
               {doctor.timing}
             </p>
           </div>
+          <Appointmentpage id={userId!} />
         </div>
       </div>
     </>
