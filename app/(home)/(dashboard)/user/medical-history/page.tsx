@@ -72,10 +72,8 @@ const MedicalHistory: React.FC = () => {
     );
   };
   return (
-    <div
-      className={`flex flex-col items-center justify-start mt-8 dark:text-white`}
-    >
-      <div className="w-[85vw] mt-20">
+    <div className={`flex flex-col items-center justify-start dark:text-white`}>
+      <div className="w-[85vw] mt-4">
         <h2 className="text-lg font-semibold mb-4">Medical Records</h2>
         {renderMedicalRecords()}
       </div>

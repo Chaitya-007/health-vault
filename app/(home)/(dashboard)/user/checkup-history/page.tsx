@@ -114,10 +114,18 @@ const CheckupHistory: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-start mt-8">
-      <div className="bg-white rounded-lg shadow-lg p-4 dark:bg-gray-900 w-[80vw]">
+    <div className="flex justify-center items-start">
+      {/* <div className="bg-white rounded-lg shadow-lg p-4 dark:bg-gray-900 w-[85vw]">
         <h2 className="text-lg font-semibold mb-4">Checkup History</h2>
         {renderCheckupHistory()}
+      </div> */}
+      <div
+        className={`flex flex-col items-center justify-start dark:text-white`}
+      >
+        <div className="w-[85vw] mt-4">
+          <h2 className="text-lg font-semibold mb-4">Checkup History</h2>
+          {renderCheckupHistory()}
+        </div>
       </div>
     </div>
   );
