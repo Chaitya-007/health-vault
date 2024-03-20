@@ -54,7 +54,7 @@ const MedicalReportPage = () => {
   };
   const [fileStates, setFileStates] = useState<FileState[]>([]);
   const { edgestore } = useEdgeStore();
-  const [url, setUrl] = useState<string>();
+  const [url, setUrl] = useState<string>("");
 
   const processForm: SubmitHandler<MedicalReportSchema> = async (data) => {
     data.testResult = url!;
@@ -217,7 +217,7 @@ const MedicalReportPage = () => {
                     className={`bg-blue-500 text-white py-2 px-4 rounded-lg  ${
                       darkMode ? "hover:bg-blue-600" : "hover:bg-blue-400"
                     } focus:outline-none`}
-                    disabled={url === undefined || isSubmitting}
+                    disabled={url === "" || isSubmitting}
                   >
                     Add
                   </Button>
