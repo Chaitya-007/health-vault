@@ -107,7 +107,7 @@ const DoctorAppointmentPage = async ({
               {doctor.timing}
             </p>
           </div>
-          <Appointmentpage id={userId!} />
+          <Appointmentpage id={doctor.doctorid} userid={userId!} />
         </div>
       </div>
     </>

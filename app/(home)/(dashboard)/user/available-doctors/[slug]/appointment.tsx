@@ -15,7 +15,7 @@ const UserAppointmentpageForm = z.object({
 
 type AppointmentpageForm = z.infer<typeof UserAppointmentpageForm>;
 
-const Appointmentpage = ({ id }: { id: string }) => {
+const Appointmentpage = ({ id, userid }: { id: string; userid: string }) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +29,7 @@ const Appointmentpage = ({ id }: { id: string }) => {
   const processForm: SubmitHandler<AppointmentpageForm> = async (data) => {
     const response = await fetch("/api/appointmentpage", {
       method: "POST",
-      body: JSON.stringify({ ...data, id: id }),
+      body: JSON.stringify({ ...data, id: id, userid: userid }),
     });
     const { success } = await response.json();
     console.log(success);
@@ -75,7 +75,7 @@ const Appointmentpage = ({ id }: { id: string }) => {
               <div className="flex items-center">
                 <Input
                   type="text"
-                  placeholder="Patient Id"
+                  placeholder="Name"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
@@ -91,7 +91,7 @@ const Appointmentpage = ({ id }: { id: string }) => {
                 />
                 <Input
                   type="text"
-                  placeholder="Doctor"
+                  placeholder="Time"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}
@@ -99,7 +99,7 @@ const Appointmentpage = ({ id }: { id: string }) => {
                 />
                 <Input
                   type="text"
-                  placeholder="Precription"
+                  placeholder="Query"
                   className={`rounded-lg border-${
                     darkMode ? "white" : "gray"
                   }-300 p-2 mr-2`}

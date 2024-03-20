@@ -3,11 +3,7 @@ import Uploadthing from "@/components/uploadthings";
 import React from "react";
 
 const WaitingAppointmentPage = () => {
-  return (
-    <div>
-      <MultiFileDropzoneUsage />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default WaitingAppointmentPage;

@@ -28,6 +28,7 @@ import { buildQuery } from "./buildQuery";
 
 export interface Doctor {
     name: string;
+    doctorid: string;
     _id: string;
     slug: string;
     image: string;
@@ -59,6 +60,7 @@ export async function getDoctors(): Promise<Doctor[]> {
     return client.fetch(groq`*[_type == "doctor"]{
         name,
         _id,
+        doctorid,
         "slug": slug.current,
         "image": image.asset->url,
         "specialty":specialty._ref,
