@@ -25,6 +25,7 @@ interface InsurancePlan {
   policyamount: number;
   name: string;
   company: string;
+  claimdate: string;
   insuranceCost: number;
   benificial: string;
   document: string[];
@@ -121,9 +122,9 @@ const InsurancePage: React.FC = () => {
               <TableCell className="font-medium">{plan.name}</TableCell>
 
               <TableCell>{plan.company}</TableCell>
-              <TableCell>${plan.insuranceCost}</TableCell>
-              <TableCell>{plan.benificial || "no Benificial"}</TableCell>
-              <TableCell>${plan.policyamount || "no amount"}</TableCell>
+              <TableCell>{plan.claimdate}</TableCell>
+              <TableCell>{plan.benificial}</TableCell>
+              <TableCell>${plan.policyamount}</TableCell>
               <TableCell className="flex flex-col my-2">
                 {plan.document
                   ? plan.document.map((doc, index) => (
