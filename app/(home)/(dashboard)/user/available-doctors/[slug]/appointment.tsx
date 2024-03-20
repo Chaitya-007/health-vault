@@ -32,7 +32,6 @@ const Appointmentpage = ({ id, userid }: { id: string; userid: string }) => {
       body: JSON.stringify({ ...data, id: id, userid: userid }),
     });
     const { success } = await response.json();
-    console.log(success);
     if (success) {
       toast("Data has been sent!");
       reset();

@@ -6,6 +6,5 @@ export async function GET(req: NextRequest, id: { params: { id: string } }) {
     const db = MongodbClient.db("Anantya");
     const collection = db.collection("medication");
     const data = await collection.find({ id: id.params.id }).toArray();
-    console.log(data);
     return NextResponse.json(data);
 }

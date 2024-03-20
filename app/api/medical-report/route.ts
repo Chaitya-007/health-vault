@@ -2,7 +2,6 @@ import clientPromise from "@/mondoDB/mongo/clientPromise";
 import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
     const data = await req.json();
-    console.log(data)
     const MongodbClient = await clientPromise;
     const db = MongodbClient.db("Anantya");
     const collection = db.collection("medical-report");
