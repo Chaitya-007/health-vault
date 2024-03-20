@@ -8,25 +8,25 @@ import { Toaster, toast } from "sonner";
 import { useEdgeStore } from "@/lib/edgestore";
 import { FileState, MultiFileDropzone } from "@/components/MultiFileDropzone";
 
-const MedicalReport = z.object({
+const CheckupHistory = z.object({
   id: z.string(),
   date: z.string(),
   doctor: z.string(),
   diagnosis: z.string(),
-  test: z.string(),
-  testResult: z.string(),
-  medication: z.string(),
+  bill: z.number(),
+  precription: z.string(),
+  document: z.string(),
 });
 
-type MedicalReportSchema = z.infer<typeof MedicalReport>;
+type CheckupFormHistory = z.infer<typeof CheckupHistory>;
 
-const MedicalReportPage = () => {
+const CheckupHistoryPage = () => {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<MedicalReportSchema>({
+  } = useForm<CheckupFormHistory>({
     // resolver: zodResolver(ContactFormSchema),
   });
 
@@ -43,22 +43,22 @@ const MedicalReportPage = () => {
   //     };
   //     getInsuranceData();
   //   }, [userId]);
-  const [CheckupRecord, setCheckupRecord] = useState<MedicalReportSchema[]>([]);
+  const [CheckupRecord, setCheckupRecord] = useState<CheckupFormHistory[]>([]);
   const [darkMode, setDarkMode] = useState(false);
 
   // Function to toggle dark mode
 
   // Function to add a new insurance plan
-  const addInsurancePlan = (plan: MedicalReportSchema) => {
+  const addInsurancePlan = (plan: CheckupFormHistory) => {
     setCheckupRecord([...CheckupRecord, plan]);
   };
   const [fileStates, setFileStates] = useState<FileState[]>([]);
   const { edgestore } = useEdgeStore();
   const [url, setUrl] = useState<string>();
 
-  const processForm: SubmitHandler<MedicalReportSchema> = async (data) => {
-    data.testResult = url!;
-    const response = await fetch("/api/medical-report", {
+  const processForm: SubmitHandler<CheckupFormHistory> = async (data) => {
+    data.document = url!;
+    const response = await fetch("/api/checkup-history", {
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -160,7 +160,7 @@ const MedicalReportPage = () => {
                     className={`rounded-lg border-${
                       darkMode ? "white" : "gray"
                     }-300 p-2 mr-2`}
-                    {...register("test", { required: true })}
+                    {...register("bill", { required: true })}
                   />
                   <Input
                     type="text"
@@ -168,7 +168,7 @@ const MedicalReportPage = () => {
                     className={`rounded-lg border-${
                       darkMode ? "white" : "gray"
                     }-300 p-2 mr-2`}
-                    {...register("medication", { required: true })}
+                    {...register("precription", { required: true })}
                   />
                 </div>
                 <div className="flex mt-6 justify-center">
@@ -234,4 +234,4 @@ const MedicalReportPage = () => {
   );
 };
 
-export default MedicalReportPage;
+export default CheckupHistoryPage;
