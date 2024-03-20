@@ -1,6 +1,6 @@
 "use client";
 
-import { Layout, Smile } from "lucide-react";
+import { BaggageClaim, Layout, MedalIcon, Smile } from "lucide-react";
 import { SidebarItem } from "./sidebar-item";
 
 const guestRoutes = [
@@ -18,6 +18,16 @@ const guestRoutes = [
     icon: Smile,
     label: "Waiting Appointment",
     href: "/doctor/appointments",
+  },
+  {
+    icon: MedalIcon,
+    label: "Medical Report",
+    href: "/doctor/medical-report",
+  },
+  {
+    icon: BaggageClaim,
+    label: "Profile",
+    href: "/doctor/checkup-history",
   },
 ];
 export const SidebarRoutes = () => {
