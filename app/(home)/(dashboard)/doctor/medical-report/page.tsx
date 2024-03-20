@@ -58,7 +58,7 @@ const MedicalReport = () => {
 
   const processForm: SubmitHandler<CheckupFormHistory> = async (data) => {
     data.document = url!;
-    const response = await fetch("/api/medicalreport", {
+    const response = await fetch("/api/medical-report", {
       method: "POST",
       body: JSON.stringify(data),
     });
