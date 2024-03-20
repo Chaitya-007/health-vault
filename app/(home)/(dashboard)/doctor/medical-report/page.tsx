@@ -1,23 +1,12 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useAuth, currentUser } from "@clerk/nextjs";
-
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { Toaster, toast } from "sonner";
 import { useEdgeStore } from "@/lib/edgestore";
 import { FileState, MultiFileDropzone } from "@/components/MultiFileDropzone";
-import Link from "next/link";
 
 export const CheckupHistory = z.object({
   id: z.string(),
@@ -69,7 +58,7 @@ const MedicalReport = () => {
 
   const processForm: SubmitHandler<CheckupFormHistory> = async (data) => {
     data.document = url!;
-    const response = await fetch("/api/medical-report", {
+    const response = await fetch("/api/medicalreport", {
       method: "POST",
       body: JSON.stringify(data),
     });
