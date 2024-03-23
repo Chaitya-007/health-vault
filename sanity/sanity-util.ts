@@ -53,7 +53,12 @@ export interface Specialty {
 export interface Work {
     hospital: string;
     year: string;
-    _id: string;
+}
+
+export interface Education {
+    college: string;
+    degree: string;
+    year: string;
 }
 
 export async function getDoctors(): Promise<Doctor[]> {
@@ -115,22 +120,21 @@ export async function getSpecialtiesById(id: string): Promise<Specialty> {
 `)
 }
 
-export async function getWork(): Promise<Work[]> {
-    return client.fetch(groq`*[_type == "workandexperience"]{
+export async function getWork(id: string[]): Promise<Work[]> {
+    return client.fetch(groq`*[_type == "workandexperience" && _id=="${id}"]{
         hospital,
         year,
     }
-`)
+`, { id })
 }
 
-export async function getWorkById(id: string): Promise<Work> {
-    return client.fetch(groq`*[_type == "workandexperience" && _id=="${id}"][0]{
-        hospital,
-        year,
-    }
-`)
+export async function getEducationById(id: string[]): Promise<Education[]> {
+    return client.fetch(groq`*[_type == "education" && _id=="${id}"]{
+        college,
+        degree,
+        year
+    }`, { id })
 }
-
 // export async function getEvents({ query, page }: GetEventProps): Promise<EventTopicProps[]> {
 
 //     return client.fetch(groq`${buildQuery({

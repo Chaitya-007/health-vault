@@ -113,7 +113,7 @@ const Appointmentpage = ({ id, userid }: { id: string; userid: string }) => {
                   } focus:outline-none`}
                   disabled={isSubmitting}
                 >
-                  Book Appointmentpage
+                  Book Appointment
                 </Button>
               </div>
             </form>
