@@ -4,7 +4,7 @@ import {
   getSpecialtiesById,
   getWork,
 } from "@/sanity/sanity-util";
-import { auth, useAuth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import React from "react";
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";

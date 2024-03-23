@@ -1,8 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['utfs.io', "cdn.sanity.io"]
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'utfs.io',
+            }
+            , {
+                protocol: 'https',
+                hostname: 'cdn.sanity.io',
+            }
+        ]
     },
 };
 
 export default nextConfig;
+// ['utfs.io', "cdn.sanity.io"]
