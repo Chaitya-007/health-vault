@@ -2,18 +2,22 @@
 
 ## This is our project Health-Vault
 
-### Team Members:
+### Team Members
 
 - [Prathmesh Chougale](https://www.linkedin.com/in/prathamesh-chougale)
 - [Uday Berad](https://www.linkedin.com/in/uday-berad-108661238/)
 - [Chaitanya Asole](https://www.linkedin.com/in/chaitanya-asole/)
 - [Shreyash Chopade](https://www.linkedin.com/in/shreyash-chopade-373828224/)
 
-### Project Description:
+### Project Description
 
 - This project is a health management system that helps users to keep track of their health records and also provides a platform to connect with doctors and book appointments.
+- The project is built using Next.js, MongoDB, Clerk, Tailwind CSS, Vercel, Sanity, Acerternity ui, Shadcn ui, Edge Store, and Gemini Api.
+- The project is hosted on Vercel and the database is hosted on MongoDB Atlas.
+- The project is built for the Alphabyte hackathon.
 
-### Tech Stack:
+
+### Tech Stack
 
 1. Next.js
 2. MongoDB
@@ -26,10 +30,10 @@
 9. Edge Store
 10. Gemini Api
 
-### Project Setup:
+### Project Setup
 
 1. Clone the repository
-2. Run
+2. Run the following command
 
 ```terminal
 npm install
