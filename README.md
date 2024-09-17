@@ -44,3 +44,6 @@ npm install
 ```terminal
 npm run dev
 ```
+
+## Blockchain Integration in the Healthcare System
+  The blockchain component of this project ensures secure, tamper-proof, and decentralized storage of medical records, enhancing data integrity and patient control over their sensitive health          information.
