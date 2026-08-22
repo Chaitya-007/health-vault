@@ -45,5 +45,17 @@ npm install
 npm run dev
 ```
 
-## Blockchain Integration in the Healthcare System
+
+
+ # Blockchain Integration in the Healthcare System
+
   The blockchain component of this project ensures secure, tamper-proof, and decentralized storage of medical records, enhancing data integrity and patient control over their sensitive health          information.
+
+# Blockchain Overview
+
+  - Blockchain technology provides a decentralized system for recording data.
+  - Each transaction is stored in blocks.
+  - Blocks are linked together through cryptographic hashes.
+  - These linked blocks form a chain (blockchain).
+  - Any alteration to a block is detectable due to the hash linking.
+  - This ensures that medical records cannot be modified without patient consent.
